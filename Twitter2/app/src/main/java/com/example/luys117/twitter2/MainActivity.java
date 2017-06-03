@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText ETCorreo, ETPassword;
-    Button BtnLogin;
+    ImageButton BtnLogin;
     TextView BtnSignIn;
 
     @Override
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         ETCorreo = (EditText) findViewById(R.id.ETCorreo);
         ETPassword = (EditText) findViewById(R.id.ETPassword);
 
-        BtnLogin = (Button) findViewById(R.id.BtnLogin);
+        BtnLogin = (ImageButton) findViewById(R.id.BtnLogin);
         BtnSignIn = (TextView) findViewById(R.id.Registro);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         BtnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intentito1 = new Intent(getApplicationContext(), Registro.class);
+                startActivity(intentito1);
 
             }
         });
@@ -74,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intentito2 =new Intent(getApplicationContext(),Entrada.class);
+                startActivity(intentito2);
 
             }
         });
@@ -115,10 +120,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        button = (Button) findViewById(R.id.button2);
-
-        Intent intentito1 = new Intent(getApplicationContext(), Registro.class);
-        startActivity(intentito1);
 
 
     }

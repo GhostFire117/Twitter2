@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Entrada"></activity>
+        <activity android:name=".Registro"></activity>
 
     </application>
 
