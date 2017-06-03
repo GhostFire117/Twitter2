@@ -1,7 +1,7 @@
 package com.example.luys117.twitter2;
 
 import android.content.Intent;
-
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,31 +19,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+public class Registro extends AppCompatActivity {
+    EditText ETcorreo, ETcontra;
+    String Scorreo, Scontra;
+    Button BotonGo;
 
-public class MainActivity extends AppCompatActivity {
-    Button button;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-
-    EditText ETCorreo, ETPassword;
-    Button BtnLogin;
-    TextView BtnSignIn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registro);
 
-                //Firebase
-                mAuth = FirebaseAuth.getInstance();
-
-        ETCorreo = (EditText) findViewById(R.id.ETCorreo);
-        ETPassword = (EditText) findViewById(R.id.ETPassword);
-
-        BtnLogin = (Button) findViewById(R.id.BtnLogin);
-        BtnSignIn = (TextView) findViewById(R.id.Registro);
+        mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -50,34 +41,31 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    Log.d("Bienvenido", "onAuthStateChanged:signed_in:" + user.getUid());
-                    Intent intento = new Intent(getApplicationContext(), Entrada.class);
-                    startActivity(intento);
-                    finish();
+                    Log.d("Holi", "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out
-                    Log.d("Registrate", "onAuthStateChanged:signed_out");
+                    Log.d("Adios", "onAuthStateChanged:signed_out");
                 }
                 // ...
             }
         };
 
-        //Registrarse
-        BtnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
+        ETcorreo=(EditText) findViewById(R.id.Etcorreo);
+        ETcontra=(EditText) findViewById(R.id.Etcontra);
+        BotonGo=(Button) findViewById(R.id.BotonGO);
+
+        BotonGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+           public void onClick(View v) {
+                Scorreo=ETcorreo.getText().toString();
+                Scontra=ETcontra.getText().toString();
+                createAccount(Scorreo,Scontra);
+                Toast.makeText(getApplicationContext(),"Hola",Toast.LENGTH_SHORT).show();
+                Intent uno=new Intent(getApplicationContext(),Entrada.class);
+                startActivity(uno);
             }
         });
-
-        //IniciarSesión
-        BtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
 
     }
 
@@ -95,31 +83,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void signIn(String ETCorreo, String ETPassword) {
-        mAuth.signInWithEmailAndPassword(ETCorreo, ETPassword)
+    public void createAccount(String correo,String contra){
+        mAuth.createUserWithEmailAndPassword(correo, contra)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("hoada", "signInWithEmail:onComplete:" + task.isSuccessful());
+                        Log.d("Bienvenido", "createUserWithEmail:onComplete:" + task.isSuccessful());
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Log.w("dasd", "signInWithEmail:failed", task.getException());
-                            Toast.makeText(MainActivity.this, "No existes", Toast.LENGTH_SHORT).show();
-
+                            Log.w("Bienvenido", "signInWithEmail:failed", task.getException());
+                            Toast.makeText(getApplicationContext(), "You Shall no pass Prro", Toast.LENGTH_SHORT).show();
                         }
 
                         // ...
                     }
                 });
-
-        button = (Button) findViewById(R.id.button2);
-
-        Intent intentito1 = new Intent(getApplicationContext(), Registro.class);
-        startActivity(intentito1);
-
-
     }
+
+
 }

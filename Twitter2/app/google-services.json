@@ -1,5 +1,6 @@
 {
   "project_info": {
+
     "project_number": "244380627944",
     "firebase_url": "https://twitter2-74f7c.firebaseio.com",
     "project_id": "twitter2-74f7c",
@@ -15,6 +16,7 @@
       },
       "oauth_client": [
         {
+
           "client_id": "244380627944-a184jsmnltc4g3ltp0p3aekjtobncb06.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -29,6 +31,7 @@
       ],
       "api_key": [
         {
+
           "current_key": "AIzaSyACKZxqZmvFnGv0uoiVQDzka9gjsFRoMVw"
         }
       ],
@@ -40,7 +43,9 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
+
               "client_id": "244380627944-g1fc27v8h8ghdrl7lgds0j3t2rqup2df.apps.googleusercontent.com",
+
               "client_type": 3
             }
           ]
