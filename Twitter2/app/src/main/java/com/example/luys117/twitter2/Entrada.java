@@ -15,7 +15,7 @@ public class Entrada extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    Button BtnLogout;
+    Button BotonGo;
 
 
     @Override
@@ -23,7 +23,7 @@ public class Entrada extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrada);
 
-        BtnLogout = (Button) findViewById(R.id.BtnLogout);
+        BotonGo=(Button) findViewById(R.id.BotonGO);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -42,15 +42,17 @@ public class Entrada extends AppCompatActivity {
             }
         };
 
-        BtnLogout.setOnClickListener(new View.OnClickListener() {
+
+
+        BotonGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intentito = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intentito);
-                finish();
+                Intent newPost= new Intent(getApplicationContext(),NewPost.class);
+                startActivity(newPost);
             }
         });
+
+
     }
 
         @Override
