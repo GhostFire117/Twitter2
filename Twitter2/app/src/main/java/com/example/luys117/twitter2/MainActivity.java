@@ -77,9 +77,14 @@ public class MainActivity extends AppCompatActivity {
         BtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentito2 =new Intent(getApplicationContext(),Entrada.class);
-                startActivity(intentito2);
-
+                String corr=ETCorreo.getText().toString();
+                String cont=ETPassword.getText().toString();
+                if(corr.length()==0 && cont.length()==0){
+                    Toast.makeText(getApplicationContext(),"Por favor ingresa tus datos",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    signIn(corr, cont);
+                }
             }
         });
 
@@ -100,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void signIn(String ETCorreo, String ETPassword) {
-        mAuth.signInWithEmailAndPassword(ETCorreo, ETPassword)
+    public void signIn(String Correo, String Password) {
+        mAuth.signInWithEmailAndPassword(Correo, Password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -112,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w("dasd", "signInWithEmail:failed", task.getException());
-                            Toast.makeText(MainActivity.this, "No existes", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "No existes. Registrare por favor", Toast.LENGTH_SHORT).show();
 
                         }
 

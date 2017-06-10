@@ -61,9 +61,14 @@ public class Registro extends AppCompatActivity {
                 Scorreo=ETcorreo.getText().toString();
                 Scontra=ETcontra.getText().toString();
                 createAccount(Scorreo,Scontra);
-                Toast.makeText(getApplicationContext(),"Hola",Toast.LENGTH_SHORT).show();
-                Intent uno=new Intent(getApplicationContext(),Entrada.class);
-                startActivity(uno);
+                if(Scontra.length()==0 && Scontra.length()==0){
+                    Toast.makeText(getApplication(),"Por ingresa tus datos",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Bienvenido a la aplicación", Toast.LENGTH_SHORT).show();
+                    Intent uno = new Intent(getApplicationContext(), Entrada.class);
+                    startActivity(uno);
+                }
             }
         });
 
