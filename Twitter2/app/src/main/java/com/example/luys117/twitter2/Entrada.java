@@ -28,7 +28,7 @@ public class Entrada extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     Button BotonGo;
-    TextView text,salir;
+    TextView text,salir,calendario;
 
 
     @Override
@@ -40,6 +40,7 @@ public class Entrada extends AppCompatActivity {
         BotonGo=(Button) findViewById(R.id.BotonGO);
         text=(TextView) findViewById(R.id.text);
         salir=(TextView) findViewById(R.id.salir);
+        calendario=(TextView) findViewById(R.id.Calendario);
         mAuth = FirebaseAuth.getInstance();
         recyclerView=(RecyclerView) findViewById(R.id.recycler_Post);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -61,7 +62,13 @@ public class Entrada extends AppCompatActivity {
             }
         };
 
-
+        calendario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent calendar=new Intent(getApplicationContext(),Calendario.class);
+                startActivity(calendar);
+            }
+        });
 
         text.setOnClickListener(new View.OnClickListener() {
             @Override

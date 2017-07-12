@@ -113,7 +113,7 @@ public class NewPost extends AppCompatActivity {
 
                 DatabaseReference myRef= FirebaseDatabase.getInstance().getReference().child("Posts");
                 String id=myRef.push().getKey();
-                Post post=new Post(title,conte,email,urlImage);
+               Post post=new Post(title,conte,email,urlImage);
                 myRef.child(id).setValue(post);
                 Toast.makeText(NewPost.this,"Tu post se ah agregado",Toast.LENGTH_SHORT).show();
                 Intent back=new Intent(getApplicationContext(),Entrada.class);
